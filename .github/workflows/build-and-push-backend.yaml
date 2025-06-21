@@ -1,0 +1,21 @@
+name: Build Backend Image 🏗️ and Push to Docker Hub 🚀
+
+# Builds the Docker image and deploys it to the VPS.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+  release:
+    types: [published]
+
+jobs:
+  build-and-push-backend:
+    name: Build and Push Backend Image
+    uses: ./.github/workflows/build-and-push.yaml
+    with:
+      image_name: grocerydb
+    secrets: inherit

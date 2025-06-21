@@ -1,0 +1,21 @@
+name: Build Frontend Image 🏗️ and Push to Docker Hub 🚀
+
+# Builds the Docker image and deploys it to the VPS.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "frontend/**"
+  release:
+    types: [published]
+
+jobs:
+  build-and-push-frontend:
+    name: Build and Push Frontend Image
+    uses: ./.github/workflows/build-and-push.yaml
+    with:
+      image_name: grocery
+    secrets: inherit
