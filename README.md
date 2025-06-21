@@ -2,19 +2,11 @@
 
 A containerized grocery list application for use on my home server.
 
-## Project Structure
-
-```
-grocery-list/
-├── backend/          # Backend Django REST API
-├── frontend/         # Frontend React app
-```
+<img src="https://raw.githubusercontent.com/andrew-s28/sourcedepth.com/refs/heads/main/assets/ui-example.png" width="400" height="auto" alt="The UI of the grocery-list app">
 
 ## Backend
 
-The backend provides a REST API for managing grocery lists:
-
-- Create, read, update, delete grocery items and lists
+The backend provides a REST API for managing grocery lists.
 
 **Tech Stack**:
 
@@ -22,10 +14,7 @@ The backend provides a REST API for managing grocery lists:
 
 ## Frontend
 
-The frontend provides a user-friendly interface for managing grocery lists:
-
-- Create and save public and private lists
-- View and check off public lists from other users
+The frontend provides a user-interface for managing grocery lists.
 
 **Tech Stack**:
 
