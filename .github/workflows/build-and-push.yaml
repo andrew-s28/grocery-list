@@ -9,6 +9,11 @@ on:
         description: "Name of the Docker image to build and push"
         required: true
         type: string
+      build_context:
+        description: "Path to the build context (default: base directory)"
+        required: false
+        type: string
+        default: "."
 
 jobs:
   build-versioned:
@@ -31,7 +36,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ${{ inputs.build_context }}
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image_name}}:${{ github.event.release.tag_name }}

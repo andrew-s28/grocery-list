@@ -18,4 +18,5 @@ jobs:
     uses: ./.github/workflows/build-and-push.yaml
     with:
       image_name: grocery
+      build_context: "./frontend/"
     secrets: inherit
