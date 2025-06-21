@@ -2,7 +2,9 @@
 
 A containerized grocery list application for use on my home server.
 
-<img src="https://raw.githubusercontent.com/andrew-s28/grocery-list/refs/heads/main/assets/ui-example.png" width="400" height="auto" alt="The UI of the grocery-list app">
+<p align="center">
+    <img src="https://raw.githubusercontent.com/andrew-s28/grocery-list/refs/heads/main/assets/ui-example.png" width="400" height="auto" alt="The UI of the grocery-list app">
+</p>
 
 ## Backend
 
