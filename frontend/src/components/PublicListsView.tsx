@@ -21,8 +21,7 @@ export function PublicListsView({ currentUsername }: PublicListsViewProps) {
     setError(null);
 
     try {
-      const lists =
-        await GroceryAPI.getPublicListsExcludingUser(currentUsername);
+      const lists = await GroceryAPI.getAllPublicLists();
       setPublicLists(lists);
     } catch (err) {
       setError(
@@ -97,11 +96,12 @@ export function PublicListsView({ currentUsername }: PublicListsViewProps) {
   return (
     <div className="max-w-xl mx-auto">
       <h2 className="text-text-primary dark:text-text-primary-dark mb-2 text-2xl font-bold">
-        Public Lists from Other Users
+        Public Lists
       </h2>
       <p className="text-text-secondary dark:text-text-secondary-dark mb-6 text-sm">
-        See what others are shopping for! Click on items to check them off and
-        help others with their shopping.
+        Here are all the public grocery lists on the platform. Here you can view
+        and check off items from any public list. If you want to create a new
+        list or edit an existing one, please use the "Public Lists" tab instead.
       </p>
       {publicLists
         .sort(

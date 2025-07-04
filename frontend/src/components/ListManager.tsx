@@ -31,7 +31,10 @@ export function ListManager({
     setLoading(true);
     setError(null);
     try {
-      const userLists = await GroceryAPI.getListsForUser(username, isPublic);
+      const userLists = isPublic
+        ? await GroceryAPI.getAllPublicLists()
+        : await GroceryAPI.getListsForUser(username, false);
+      // const userLists = await GroceryAPI.getAllPublicLists();
       setLists(userLists);
 
       // If no list is selected and we have lists, select the first one
@@ -99,7 +102,7 @@ export function ListManager({
     <div className="bg-primary-200 dark:bg-primary-200-dark rounded-lg p-5 mb-6 border border-border dark:border-border-dark">
       <div className="flex justify-between items-center mb-4 pb-3 border-b border-border dark:border-border-dark">
         <h3 className="m-0 text-text-primary dark:text-text-primary-dark text-lg font-bold">
-          {isPublic ? "My Public Lists" : "My Private Lists"}
+          {isPublic ? "All Public Lists" : "My Private Lists"}
         </h3>
         <button
           onClick={() => setShowCreateForm(true)}
@@ -113,9 +116,10 @@ export function ListManager({
           <p>{error}</p>
           <button
             onClick={loadLists}
-            className="bg-button-danger dark:bg-button-danger-dark text-white border-0 rounded cursor-pointer px-3 py-1.5 text-xs"
+            className="bg-button-danger dark:bg-button-danger-dark text-white border-0 rounded-full w-6 h-6 flex items-center justify-center cursor-pointer text-base leading-none transition-colors duration-200 hover:bg-button-danger-hover dark:hover:bg-button-danger-hover-dark"
+            aria-label="Remove item"
           >
-            Retry
+            <CircleX className="w-full h-full" />
           </button>
         </div>
       )}
@@ -156,10 +160,12 @@ export function ListManager({
       <div className="max-h-[300px] overflow-y-auto">
         {lists.length === 0 ? (
           <div className="text-center py-5 text-text-secondary dark:text-text-secondary-dark">
-            <p>
-              You don't have any {isPublic ? "public" : "private"} lists yet.
-            </p>
-            <p>Create your first list to get started!</p>
+            {isPublic ? (
+              <p>There are no {isPublic ? "public" : "private"} lists yet.</p>
+            ) : (
+              <p>You have no private lists yet.</p>
+            )}
+            <p>Create a list to get started!</p>
           </div>
         ) : (
           lists
@@ -181,11 +187,16 @@ export function ListManager({
                 <div className="flex-1">
                   <h4 className="m-0 mb-1 text-text-primary dark:text-text-primary-dark text-[15px] font-medium">
                     {list.name}
+                    <span className="text-[15px] text-text-secondary dark:text-text-secondary-dark italic">
+                      &nbsp;(created by {list.username})
+                    </span>
                   </h4>
                   <p className="m-0 text-text-secondary dark:text-text-secondary-dark text-[13px]">
-                    {list.items.length} item{list.items.length !== 1 ? "s" : ""}
-                    •{list.items.filter((item) => item.completed).length}
-                    completed
+                    {list.items.length}&nbsp;item
+                    {list.items.length !== 1 ? "s" : ""}
+                    &nbsp;•&nbsp;
+                    {list.items.filter((item) => item.completed).length}
+                    &nbsp;completed
                   </p>
                 </div>
                 <button

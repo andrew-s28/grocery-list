@@ -1,6 +1,6 @@
 import type { GroceryItem, GroceryList } from '../types';
 
-const API_BASE_URL = 'https://grocery.micdrew.house/api';
+const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
 // Helper function to convert Django datetime to Date object
 const parseDateTime = (dateString: string): Date => new Date(dateString);
@@ -54,7 +54,13 @@ export class GroceryAPI {
       }),
     });
     
-    if (!response.ok) throw new Error('Failed to create list');
+    if (!response.ok) {
+      const errorData = await response.json();
+      if (errorData.non_field_errors) {
+        throw new Error(`Failed to create list: ${errorData.non_field_errors}`);
+      }
+      throw new Error("Failed to create list: Unknown error");
+    }
     
     const data = await response.json();
     return transformList(data);

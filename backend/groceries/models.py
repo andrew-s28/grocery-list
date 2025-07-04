@@ -12,6 +12,18 @@ class GroceryList(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["username", "name", "is_public"],
+                name="unique_grocery_list_per_user_and_name",
+                condition=models.Q(is_public=False),
+            ),
+            models.UniqueConstraint(
+                fields=["name", "is_public"],
+                name="unique_grocery_list_per_name",
+                condition=models.Q(is_public=True),
+            ),
+        ]
 
     def __str__(self):
         return f"{self.username}'s {self.name}"

@@ -1,3 +1,4 @@
+from django.db import models
 from rest_framework import serializers
 
 from .models import GroceryItem, GroceryList
@@ -23,6 +24,18 @@ class GroceryListCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = GroceryList
         fields = ["username", "name", "is_public"]
+        validators = [
+            serializers.UniqueTogetherValidator(
+                queryset=GroceryList.objects.filter(is_public=False),
+                fields=["username", "name", "is_public"],
+                message="A private grocery list with this name already exists for this user.",
+            ),
+            serializers.UniqueTogetherValidator(
+                queryset=GroceryList.objects.filter(is_public=True),
+                fields=["name", "is_public"],
+                message="A public grocery list with this name already exists.",
+            ),
+        ]
 
 
 class GroceryItemCreateSerializer(serializers.ModelSerializer):
