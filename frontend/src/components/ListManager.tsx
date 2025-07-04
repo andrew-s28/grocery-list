@@ -204,7 +204,7 @@ export function ListManager({
                     e.stopPropagation();
                     handleDeleteList(list.id);
                   }}
-                  className="bg-button-danger dark:bg-button-danger-dark text-white border-0 rounded-full w-6 h-6 flex items-center justify-center cursor-pointer text-base leading-none transition-colors duration-200 ml-3 hover:bg-button-danger-hover dark:hover:bg-button-danger-hover-dark"
+                  className="bg-button-danger dark:bg-button-danger-dark text-white border-0 rounded-full min-w-6 w-6 h-6 flex items-center justify-center cursor-pointer text-base leading-none transition-colors duration-200 ml-3 hover:bg-button-danger-hover dark:hover:bg-button-danger-hover-dark"
                   aria-label="Delete list"
                 >
                   <CircleX className="w-full h-full" />

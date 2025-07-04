@@ -123,7 +123,8 @@ export function PublicListsView({ currentUsername }: PublicListsViewProps) {
                 </p>
               </div>
               <span className="bg-button-primary dark:bg-button-primary-dark text-white px-2 py-1 rounded-xl text-xs font-medium">
-                {list.items.length} item{list.items.length !== 1 ? "s" : ""}
+                {list.items.length}&nbsp;item
+                {list.items.length !== 1 ? "s" : ""}
               </span>
             </div>
             {list.items.length === 0 ? (
@@ -178,7 +179,8 @@ export function PublicListsView({ currentUsername }: PublicListsViewProps) {
             )}
             {list.items.length > 0 && (
               <div className="px-5 py-3 bg-primary-300 dark:bg-primary-300-dark text-center text-text-secondary dark:text-text-secondary-dark text-[13px] border-t border-border dark:border-border-dark">
-                {list.items.filter((item) => item.completed).length} of
+                {list.items.filter((item) => item.completed).length}
+                &nbsp;of&nbsp;
                 {list.items.length} completed
               </div>
             )}

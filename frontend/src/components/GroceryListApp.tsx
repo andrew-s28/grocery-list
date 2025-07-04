@@ -166,7 +166,7 @@ export function GroceryListApp() {
     );
   }
   return (
-    <div className="max-w-3xl mx-auto p-5 font-sans min-h-screen bg-primary-50 dark:bg-primary-50-dark">
+    <div className="max-w-3xl mx-auto p-5 font-sans min-h-screen bg-primary-50 dark:bg-primary-50-dark hyphens-auto">
       <header className="rounded-xl mb-6 overflow-hidden bg-primary-100 dark:bg-primary-100-dark shadow-[0_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
         <div className="flex flex-col sm:flex-row w-full gap-2 justify-between items-center px-8 py-6 border-b border-border-light dark:border-border-light-dark text-text-secondary dark:text-text-secondary-dark">
           <h1 className="m-0 text-3xl text-text-primary dark:text-text-primary-dark font-bold">
@@ -297,7 +297,7 @@ export function GroceryListApp() {
                         currentList.items.filter((item) => item.completed)
                           .length
                       }
-                      of {currentList.items.length} items completed
+                      &nbsp;of&nbsp;{currentList.items.length} items completed
                     </p>
                   </div>
                 )}
