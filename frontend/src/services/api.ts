@@ -1,6 +1,6 @@
 import type { GroceryItem, GroceryList } from '../types';
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api';
+const API_BASE_URL = 'https://grocery.micdrew.house/api';
 
 // Helper function to convert Django datetime to Date object
 const parseDateTime = (dateString: string): Date => new Date(dateString);
